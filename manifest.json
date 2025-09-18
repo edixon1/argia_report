@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "locale": "en_US",
+  "platform": "4.5.1",
+  "metadata": {
+    "appmode": "static",
+    "primary_rmd": null,
+    "primary_html": "C:/Users/Eliot-KDV/Desktop/Documents/A_CodingProjects/P_Argia_Quarto/Code/argia_report.qmd",
+    "content_category": null,
+    "has_parameters": false
+  },
+  "packages": null,
+  "files": {
+    "Code/argia_report.qmd": {
+      "checksum": "4bc2756fac2c235a9614f401184a70c9"
+    },
+    "Code/prep_argia.qmd": {
+      "checksum": "fe28487d42d475873b7154da36017b17"
+    },
+    "Data/Raw/argia_data_raw.csv": {
+      "checksum": "0326a7876556afc0bfbbd98941fa0250"
+    },
+    "Data/Tidy/argia/argia_tidy.gpkg": {
+      "checksum": "eea06b63c4bf22f1af65179214608c2f"
+    },
+    "Data/Tidy/huc12/huc12.gpkg": {
+      "checksum": "ad82920b2457022c8c5b5a5e82f43301"
+    }
+  },
+  "users": null
+}
