@@ -1,11 +1,11 @@
 ---
-title: "argia_report"
+title: "Argia Observation Data"
 format: html
 ---
 
 ```{r}
+#| echo: false
 #| label: setup
-#| echo: true
 #| message: false
 #| warning: false
 #| results: hide
@@ -16,36 +16,157 @@ library(geojsonsf)
 library(glue)
 library(leaflet)
 library(here)
+library(ggplot2)
 ```
 
-# Read in tidy data
-
-## Tidied observations of Argia sp.
-
 ```{r}
+#| echo: false
 #| label: read-argia
 #| message: false
+#| results: hide
+
 argia <- sf::st_read(here::here("Data/Tidy/argia/", "argia_tidy.gpkg"))
 ```
 
-## 12 Digit hydrological unit codes (HUC12) polygons from study area
 
 ```{r}
+#| echo: false
 #| label: read-huc12
 #| message: false
+#| results: hide
+
 huc12 <- sf::st_read(here::here("Data/Tidy/huc12/", "huc12.gpkg"))
 ```
 
 # Data Review
 
-## Argia sp observations with HUC12 polygons
+### Argia Observations with HUC12 polygons
+
+Below is a map showing each observation from the Argia data set overlaying HUC12
+polygons within the study area.
 
 ```{r}
+#| echo: false
 #| label: argia-huc12-quickplot
+
 leaflet() |> 
   addProviderTiles(providers$Esri.WorldImagery) |> 
   addPolygons(data=huc12, weight = 2, popup = ~NAME) |> 
   addCircleMarkers(data = argia, color = "black", weight = 1.5,
                    radius = 5, opacity = 1, fillColor = "orange", fillOpacity = 1,
                    popup = ~LOWEST_ID)
+
+```
+
+
+# Number of Individuals within each HUC12 unit
+```{r}
+#| echo: false
+#| fig-height: 8
+#| fig-width: 8
+
+argia <- st_join(argia, dplyr::rename(huc12, HUC12 = NAME), join = st_intersects)
+
+ggplot(argia) +
+  geom_bar(aes(x = reorder(factor(HUC12), HUC12, length))) +
+  labs(x = "HUC12 Name", y = "N Observed") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 0.95, vjust = 0.2, size = 14),
+        axis.title = element_text(size = 17),
+        plot.title = element_text(size = 19))
+```
+
+```{r}
+#| echo: false
+
+huc12_summ <- argia |> 
+  st_drop_geometry() |> 
+  group_by(HUC12) |>
+  summarise(IND_COUNT = n(),
+            GEN_COUNT = length(unique(GENUS)),
+            GEN_RATIO = GEN_COUNT/IND_COUNT) |> 
+  ungroup()
+
+huc12_summ <- left_join(huc12, huc12_summ, by = c("NAME" = "HUC12")) |> 
+  dplyr::mutate(POP_UP = sprintf("%s<br>N Indivduals: %s", NAME, IND_COUNT))
+
+```
+
+## Number of Individuals
+
+```{r}
+#| echo: false
+
+pal <- colorNumeric(palette = "YlOrRd", domain = huc12_summ$IND_COUNT)
+
+leaflet(data=huc12_summ) |> 
+  addProviderTiles(providers$Esri.WorldImagery) |> 
+  addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
+  popup = ~POP_UP,
+  fillColor = ~pal(IND_COUNT),
+  highlightOptions = highlightOptions(
+    weight =2,
+    color = "#666",
+    fillOpacity = 1,
+    bringToFront = TRUE), color = "black") |> 
+  addLegend(
+    pal = pal,
+    values = ~IND_COUNT,
+    title = "N Individuals",
+    position = "bottomright"
+  )
+```
+
+## Number of Unique Genera Observed
+
+```{r}
+#| echo: false
+
+pal <- colorNumeric(palette = "YlOrRd", domain = huc12_summ$GEN_COUNT)
+
+leaflet(data=huc12_summ) |> 
+  addProviderTiles(providers$Esri.WorldImagery) |> 
+  addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
+  popup = ~POP_UP,
+  fillColor = ~pal(GEN_COUNT),
+  highlightOptions = highlightOptions(
+    weight =2,
+    color = "#666",
+    fillOpacity = 1,
+    bringToFront = TRUE), color = "black") |> 
+  addLegend(
+    pal = pal,
+    values = ~GEN_COUNT,
+    title = "N Genera",
+    position = "bottomright"
+  )
+```
+
+## Genera per Individual (Where \# Of Individuals \> 5)
+
+```{r}
+#| echo: false
+
+gen_summ <- huc12_summ |> 
+  dplyr::mutate(GEN_RATIO = ifelse(IND_COUNT <= 5, NA, GEN_RATIO)) 
+
+
+pal <- colorNumeric(palette = "YlOrRd", domain = gen_summ$GEN_RATIO)
+
+leaflet(data=gen_summ) |> 
+  addProviderTiles(providers$Esri.WorldImagery) |> 
+  addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
+  popup = ~POP_UP,
+  fillColor = ~pal(GEN_RATIO),
+  highlightOptions = highlightOptions(
+    weight =2,
+    color = "#666",
+    fillOpacity = 1,
+    bringToFront = TRUE), color = "black") |> 
+  addLegend(
+    pal = pal,
+    values = ~GEN_RATIO,
+    title = "Genus/Individual",
+    position = "bottomright"
+  )
+
 ```
