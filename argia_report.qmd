@@ -119,24 +119,24 @@ leaflet(data=huc12_summ) |>
 ```{r}
 #| echo: false
 
-# pal <- colorNumeric(palette = "YlOrRd", domain = huc12_summ$GEN_COUNT)
-# 
-# leaflet(data=huc12_summ) |>
-#   addProviderTiles(providers$Esri.WorldImagery) |>
-#   addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
-#   popup = ~POP_UP,
-#   fillColor = ~pal(GEN_COUNT),
-#   highlightOptions = highlightOptions(
-#     weight =2,
-#     color = "#666",
-#     fillOpacity = 1,
-#     bringToFront = TRUE), color = "black") |>
-#   addLegend(
-#     pal = pal,
-#     values = ~GEN_COUNT,
-#     title = "N Genera",
-#     position = "bottomright"
-#   )
+pal <- colorNumeric(palette = "YlOrRd", domain = huc12_summ$GEN_COUNT)
+
+leaflet(data=huc12_summ) |>
+  addProviderTiles(providers$Esri.WorldImagery) |>
+  addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
+  popup = ~POP_UP,
+  fillColor = ~pal(GEN_COUNT),
+  highlightOptions = highlightOptions(
+    weight =2,
+    color = "#666",
+    fillOpacity = 1,
+    bringToFront = TRUE), color = "black") |>
+  addLegend(
+    pal = pal,
+    values = ~GEN_COUNT,
+    title = "N Genera",
+    position = "bottomright"
+  )
 ```
 
 ## Genera per Individual (Where \# Of Individuals \> 5)
