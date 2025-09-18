@@ -28,7 +28,6 @@ library(ggplot2)
 argia <- sf::st_read(here::here("Data/Tidy/argia/", "argia_tidy.gpkg"))
 ```
 
-
 ```{r}
 #| echo: false
 #| label: read-huc12
@@ -42,8 +41,7 @@ huc12 <- sf::st_read(here::here("Data/Tidy/huc12/", "huc12.gpkg"))
 
 ### Argia Observations with HUC12 polygons
 
-Below is a map showing each observation from the Argia data set overlaying HUC12
-polygons within the study area.
+Below is a map showing each observation from the Argia data set overlaying HUC12 polygons within the study area.
 
 ```{r}
 #| echo: false
@@ -58,8 +56,8 @@ leaflet() |>
 
 ```
 
-
 # Number of Individuals within each HUC12 unit
+
 ```{r}
 #| echo: false
 #| fig-height: 8
@@ -121,24 +119,24 @@ leaflet(data=huc12_summ) |>
 ```{r}
 #| echo: false
 
-pal <- colorNumeric(palette = "YlOrRd", domain = huc12_summ$GEN_COUNT)
-
-leaflet(data=huc12_summ) |> 
-  addProviderTiles(providers$Esri.WorldImagery) |> 
-  addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
-  popup = ~POP_UP,
-  fillColor = ~pal(GEN_COUNT),
-  highlightOptions = highlightOptions(
-    weight =2,
-    color = "#666",
-    fillOpacity = 1,
-    bringToFront = TRUE), color = "black") |> 
-  addLegend(
-    pal = pal,
-    values = ~GEN_COUNT,
-    title = "N Genera",
-    position = "bottomright"
-  )
+# pal <- colorNumeric(palette = "YlOrRd", domain = huc12_summ$GEN_COUNT)
+# 
+# leaflet(data=huc12_summ) |> 
+#   addProviderTiles(providers$Esri.WorldImagery) |> 
+#   addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
+#   popup = ~POP_UP,
+#   fillColor = ~pal(GEN_COUNT),
+#   highlightOptions = highlightOptions(
+#     weight =2,
+#     color = "#666",
+#     fillOpacity = 1,
+#     bringToFront = TRUE), color = "black") |> 
+#   addLegend(
+#     pal = pal,
+#     values = ~GEN_COUNT,
+#     title = "N Genera",
+#     position = "bottomright"
+#   )
 ```
 
 ## Genera per Individual (Where \# Of Individuals \> 5)
@@ -146,27 +144,27 @@ leaflet(data=huc12_summ) |>
 ```{r}
 #| echo: false
 
-gen_summ <- huc12_summ |> 
-  dplyr::mutate(GEN_RATIO = ifelse(IND_COUNT <= 5, NA, GEN_RATIO)) 
-
-
-pal <- colorNumeric(palette = "YlOrRd", domain = gen_summ$GEN_RATIO)
-
-leaflet(data=gen_summ) |> 
-  addProviderTiles(providers$Esri.WorldImagery) |> 
-  addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
-  popup = ~POP_UP,
-  fillColor = ~pal(GEN_RATIO),
-  highlightOptions = highlightOptions(
-    weight =2,
-    color = "#666",
-    fillOpacity = 1,
-    bringToFront = TRUE), color = "black") |> 
-  addLegend(
-    pal = pal,
-    values = ~GEN_RATIO,
-    title = "Genus/Individual",
-    position = "bottomright"
-  )
+# gen_summ <- huc12_summ |> 
+#   dplyr::mutate(GEN_RATIO = ifelse(IND_COUNT <= 5, NA, GEN_RATIO)) 
+# 
+# 
+# pal <- colorNumeric(palette = "YlOrRd", domain = gen_summ$GEN_RATIO)
+# 
+# leaflet(data=gen_summ) |> 
+#   addProviderTiles(providers$Esri.WorldImagery) |> 
+#   addPolygons(weight = 1, opacity = 1, fillOpacity = 0.8,
+#   popup = ~POP_UP,
+#   fillColor = ~pal(GEN_RATIO),
+#   highlightOptions = highlightOptions(
+#     weight =2,
+#     color = "#666",
+#     fillOpacity = 1,
+#     bringToFront = TRUE), color = "black") |> 
+#   addLegend(
+#     pal = pal,
+#     values = ~GEN_RATIO,
+#     title = "Genus/Individual",
+#     position = "bottomright"
+#   )
 
 ```
