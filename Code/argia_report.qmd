@@ -1,0 +1,51 @@
+---
+title: "argia_report"
+format: html
+---
+
+```{r}
+#| label: setup
+#| echo: true
+#| message: false
+#| warning: false
+#| results: hide
+
+library(dplyr)
+library(sf)
+library(geojsonsf)
+library(glue)
+library(leaflet)
+library(here)
+```
+
+# Read in tidy data
+
+## Tidied observations of Argia sp.
+
+```{r}
+#| label: read-argia
+#| message: false
+argia <- sf::st_read(here::here("Data/Tidy/argia/", "argia_tidy.gpkg"))
+```
+
+## 12 Digit hydrological unit codes (HUC12) polygons from study area
+
+```{r}
+#| label: read-huc12
+#| message: false
+huc12 <- sf::st_read(here::here("Data/Tidy/huc12/", "huc12.gpkg"))
+```
+
+# Data Review
+
+## Argia sp observations with HUC12 polygons
+
+```{r}
+#| label: argia-huc12-quickplot
+leaflet() |> 
+  addProviderTiles(providers$Esri.WorldImagery) |> 
+  addPolygons(data=huc12, weight = 2, popup = ~NAME) |> 
+  addCircleMarkers(data = argia, color = "black", weight = 1.5,
+                   radius = 5, opacity = 1, fillColor = "orange", fillOpacity = 1,
+                   popup = ~LOWEST_ID)
+```

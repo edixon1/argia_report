@@ -1,0 +1,96 @@
+---
+title: "Prep Argia Data"
+author: "Eliot Dixon"
+format: html
+editor: visual
+---
+
+# Setup libraries
+
+```{r}
+#| echo: true
+#| results: "hide"
+#| message: false
+
+library(dplyr)
+library(sf)
+library(geojsonsf)
+library(glue)
+library(leaflet)
+```
+
+```{r}
+# Drop last row, (summary row)
+argia_raw <- read.csv(here::here("Data/Raw/argia_data_raw.csv")) |> 
+  head(-1)
+
+
+argia_tidy <- argia_raw
+# Start reworking naming conventions
+names(argia_tidy) <- toupper(names(argia_tidy))
+
+# Combine private and normal lat long columns such that we keep private when present
+argia_tidy <- argia_tidy |> 
+  dplyr::mutate(PRIVATE_LONGITUDE = coalesce(PRIVATE_LONGITUDE, LONGITUDE),
+                PRIVATE_LATITUDE = coalesce(PRIVATE_LATITUDE, LATITUDE)) |> 
+  # Rework column names
+  dplyr::select(-LATITUDE, -LONGITUDE, DATE = OBSERVED_ON, USER_NAME, URL, 
+                LATITUDE = PRIVATE_LATITUDE, LONGITUDE = PRIVATE_LONGITUDE, 
+                COUNTY = PLACE_COUNTY_NAME, STATE = PLACE_STATE_NAME, 
+                LOWEST_ID = SCIENTIFIC_NAME, COMMON_NAME, ORDER = TAXON_ORDER_NAME,
+                SUBORDER = TAXON_SUBORDER_NAME, FAMILY = TAXON_FAMILY_NAME, 
+                GENUS = TAXON_GENUS_NAME, SP = TAXON_SPECIES_NAME,
+                SURVEY_UNIT = FIELD.2X4.ODONATE.SURVEY.UNIT, FIELD_COUNT = FIELD.COUNT,
+                -X, -X.1, -X.2, - X.3) |> 
+  # Convert to sf object
+  sf::st_as_sf(coords = c("LONGITUDE", "LATITUDE"), crs = 4326, remove = FALSE)
+
+```
+
+
+
+# Pull HUC12 Polygons from API
+```{r}
+
+# Store bounding box and format such that it can be used in a URL
+#  to send as envelope to HUC12 API
+bbox <- st_bbox(argia_tidy) |> 
+  paste(collapse = ",") |> 
+  URLencode(reserved = TRUE)
+
+# Store CRS integer code
+crs_int <- 4326
+
+# Build API request
+url <- glue("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Watershed_Boundary_Dataset_HUC_12s/FeatureServer/0/query?where=&objectIds=&geometry={bbox}&geometryType=esriGeometryEnvelope&inSR={crs_int}&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=&returnGeometry=true&returnCentroid=false&returnEnvelope=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&collation=&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnTrueCurves=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token=")
+```
+
+# Pull huc12 polygons from API
+```{r}
+#| warning: false
+
+huc12 <- geojsonsf::geojson_sf(url)
+```
+
+
+# View huc12 with Argia observations
+```{r}
+leaflet() |> 
+  addProviderTiles(providers$Esri.WorldImagery) |> 
+  addPolygons(data=huc12, weight = 2, popup = ~NAME) |> 
+  addCircleMarkers(data = argia_tidy, color = "black", weight = 1.5,
+                   radius = 5, opacity = 1, fillColor = "orange", fillOpacity = 1,
+                   popup = ~LOWEST_ID)
+```
+
+
+# Save HUC12 polygons and tidied argia data
+```{r}
+st_write(huc12, here::here("Data/Tidy/huc12/", "huc12.gpkg"), delete_layer = TRUE)
+st_write(argia_tidy, here::here("Data/Tidy/argia/", "argia_tidy.gpkg"), delete_layer = TRUE)
+```
+
+
+
+
+
