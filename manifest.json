@@ -212,6 +212,96 @@
         "Archs": "x64"
       }
     },
+    "askpass": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "askpass",
+        "Type": "Package",
+        "Title": "Password Entry Utilities for R, Git, and SSH",
+        "Version": "1.2.1",
+        "Authors@R": "person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), \n    email = \"jeroenooms@gmail.com\", comment = c(ORCID = \"0000-0002-4035-0289\"))",
+        "Description": "Cross-platform utilities for prompting the user for credentials or a \n    passphrase, for example to authenticate with a server or read a protected key.\n    Includes native programs for MacOS and Windows, hence no 'tcltk' is required. \n    Password entry can be invoked in two different ways: directly from R via the \n    askpass() function, or indirectly as password-entry back-end for 'ssh-agent' \n    or 'git-credential' via the SSH_ASKPASS and GIT_ASKPASS environment variables.\n    Thereby the user can be prompted for credentials or a passphrase if needed \n    when R calls out to git or ssh.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://r-lib.r-universe.dev/askpass",
+        "BugReports": "https://github.com/r-lib/askpass/issues",
+        "Encoding": "UTF-8",
+        "Imports": "sys (>= 2.1)",
+        "RoxygenNote": "7.2.3",
+        "Suggests": "testthat",
+        "Language": "en-US",
+        "NeedsCompilation": "yes",
+        "Packaged": "2024-10-03 14:12:09 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-10-04 07:20:03 UTC",
+        "Built": "R 4.5.0; x86_64-w64-mingw32; 2025-04-21 01:12:41 UTC; windows",
+        "Archs": "x64"
+      }
+    },
+    "aws.s3": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "aws.s3",
+        "Type": "Package",
+        "Title": "'AWS S3' Client Package",
+        "Version": "0.3.22",
+        "Authors@R": "c(person(\"Thomas J.\", \"Leeper\", role = \"aut\",\n                    email = \"thosjleeper@gmail.com\",\n                    comment = c(ORCID = \"0000-0003-4097-6326\")),\n             person(\"Boettiger\", \"Carl\", role = \"ctb\"),\n             person(\"Andrew\", \"Martin\", role = \"ctb\"),\n             person(\"Mark\", \"Thompson\", role = \"ctb\"),\n             person(\"Tyler\", \"Hunt\", role = \"ctb\"),\n             person(\"Steven\", \"Akins\", role = \"ctb\"),\n             person(\"Bao\", \"Nguyen\", role = \"ctb\"),\n             person(\"Thierry\", \"Onkelinx\", role = \"ctb\"),\n             person(\"Andrii\", \"Degtiarov\", role = \"ctb\"),\n             person(\"Dhruv\", \"Aggarwal\", role = \"ctb\"),\n             person(\"Alyssa\", \"Columbus\", role = \"ctb\"),\n             person(\"Simon\", \"Urbanek\", role = c(\"cre\", \"ctb\"),\n                    email = \"simon.urbanek@R-project.org\")\n\t     )",
+        "Maintainer": "Simon Urbanek <simon.urbanek@R-project.org>",
+        "Description": "A simple client package for the Amazon Web Services ('AWS') Simple\n    Storage Service ('S3') 'REST' 'API' <https://aws.amazon.com/s3/>.",
+        "License": "GPL (>= 2)",
+        "URL": "https://github.com/cloudyr/aws.s3",
+        "BugReports": "https://github.com/cloudyr/aws.s3/issues",
+        "Encoding": "UTF-8",
+        "Imports": "utils, tools, curl, httr, xml2 (> 1.0.0), base64enc, digest,\naws.signature (>= 0.3.7)",
+        "Suggests": "testthat, datasets",
+        "RoxygenNote": "7.1.0",
+        "NeedsCompilation": "no",
+        "Packaged": "2025-08-18 23:50:23 UTC; rforge",
+        "Author": "Thomas J. Leeper [aut] (ORCID: <https://orcid.org/0000-0003-4097-6326>),\n  Boettiger Carl [ctb],\n  Andrew Martin [ctb],\n  Mark Thompson [ctb],\n  Tyler Hunt [ctb],\n  Steven Akins [ctb],\n  Bao Nguyen [ctb],\n  Thierry Onkelinx [ctb],\n  Andrii Degtiarov [ctb],\n  Dhruv Aggarwal [ctb],\n  Alyssa Columbus [ctb],\n  Simon Urbanek [cre, ctb]",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-08-19 02:50:09 UTC",
+        "Built": "R 4.5.1; ; 2025-09-11 12:24:27 UTC; windows",
+        "RemoteType": "standard",
+        "RemotePkgRef": "aws.s3",
+        "RemoteRef": "aws.s3",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha": "0.3.22"
+      }
+    },
+    "aws.signature": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "aws.signature",
+        "Type": "Package",
+        "Title": "Amazon Web Services Request Signatures",
+        "Version": "0.6.0",
+        "Date": "2020-06-01",
+        "Authors@R": "c(person(\"Thomas J.\", \"Leeper\",\n                    role = c(\"aut\"),\n                    email = \"thosjleeper@gmail.com\",\n                    comment = c(ORCID = \"0000-0003-4097-6326\")),\n             person(\"Jonathan\", \"Stott\", email = \"jonathan.stott@magairports.com\", role = c(\"cre\", \"aut\")),\n             person(\"Mike\", \"Kaminsky\", email = \"kaminsky.michael@gmail.com\", role = \"ctb\")\n            )",
+        "Description": "Generates version 2 and version 4 request signatures for Amazon Web Services ('AWS') <https://aws.amazon.com/> Application Programming Interfaces ('APIs') and provides a mechanism for retrieving credentials from environment variables, 'AWS' credentials files, and 'EC2' instance metadata. For use on 'EC2' instances, users will need to install the suggested package 'aws.ec2metadata' <https://cran.r-project.org/package=aws.ec2metadata>.",
+        "License": "GPL (>= 2)",
+        "Imports": "digest, base64enc",
+        "Suggests": "testthat (>= 2.1.0), aws.ec2metadata (>= 0.1.6)",
+        "URL": "https://github.com/cloudyr/aws.signature",
+        "BugReports": "https://github.com/cloudyr/aws.signature/issues",
+        "RoxygenNote": "7.1.0",
+        "NeedsCompilation": "no",
+        "Packaged": "2020-06-01 09:51:14 UTC; jon_m",
+        "Author": "Thomas J. Leeper [aut] (<https://orcid.org/0000-0003-4097-6326>),\n  Jonathan Stott [cre, aut],\n  Mike Kaminsky [ctb]",
+        "Maintainer": "Jonathan Stott <jonathan.stott@magairports.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2020-06-01 10:10:02 UTC",
+        "Built": "R 4.5.1; ; 2025-09-11 11:08:39 UTC; windows",
+        "RemoteType": "standard",
+        "RemotePkgRef": "aws.signature",
+        "RemoteRef": "aws.signature",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemoteSha": "0.6.0"
+      }
+    },
     "base64enc": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -433,6 +523,36 @@
         "Repository": "CRAN",
         "Date/Publication": "2023-11-23 08:50:07 UTC",
         "Built": "R 4.5.0; ; 2025-04-21 01:27:08 UTC; windows"
+      }
+    },
+    "curl": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "curl",
+        "Type": "Package",
+        "Title": "A Modern and Flexible Web Client for R",
+        "Version": "6.4.0",
+        "Authors@R": "c(\n    person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroenooms@gmail.com\",\n      comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Hadley\", \"Wickham\", role = \"ctb\"),\n    person(\"Posit Software, PBC\", role = \"cph\"))",
+        "Description": "Bindings to 'libcurl' <https://curl.se/libcurl/> for performing fully\n    configurable HTTP/FTP requests where responses can be processed in memory, on\n    disk, or streaming via the callback or connection interfaces. Some knowledge\n    of 'libcurl' is recommended; for a more-user-friendly web client see the \n    'httr2' package which builds on this package with http specific tools and logic.",
+        "License": "MIT + file LICENSE",
+        "SystemRequirements": "libcurl (>= 7.73): libcurl-devel (rpm) or\nlibcurl4-openssl-dev (deb)",
+        "URL": "https://jeroen.r-universe.dev/curl",
+        "BugReports": "https://github.com/jeroen/curl/issues",
+        "Suggests": "spelling, testthat (>= 1.0.0), knitr, jsonlite, later,\nrmarkdown, httpuv (>= 1.4.4), webutils",
+        "VignetteBuilder": "knitr",
+        "Depends": "R (>= 3.0.0)",
+        "RoxygenNote": "7.3.2.9000",
+        "Encoding": "UTF-8",
+        "Language": "en-US",
+        "NeedsCompilation": "yes",
+        "Packaged": "2025-06-21 19:18:13 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (ORCID: <https://orcid.org/0000-0002-4035-0289>),\n  Hadley Wickham [ctb],\n  Posit Software, PBC [cph]",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-06-22 10:40:02 UTC",
+        "Built": "R 4.5.1; x86_64-w64-mingw32; 2025-08-02 00:33:30 UTC; windows",
+        "Archs": "x64"
       }
     },
     "digest": {
@@ -1001,6 +1121,34 @@
         "Built": "R 4.5.0; ; 2025-04-21 02:05:52 UTC; windows"
       }
     },
+    "httr": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "httr",
+        "Title": "Tools for Working with URLs and HTTP",
+        "Version": "1.4.7",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\")),\n    person(\"Posit, PBC\", role = c(\"cph\", \"fnd\"))\n  )",
+        "Description": "Useful tools for working with HTTP organised by HTTP verbs\n    (GET(), POST(), etc). Configuration functions make it easy to control\n    additional request components (authenticate(), add_headers() and so\n    on).",
+        "License": "MIT + file LICENSE",
+        "URL": "https://httr.r-lib.org/, https://github.com/r-lib/httr",
+        "BugReports": "https://github.com/r-lib/httr/issues",
+        "Depends": "R (>= 3.5)",
+        "Imports": "curl (>= 5.0.2), jsonlite, mime, openssl (>= 0.8), R6",
+        "Suggests": "covr, httpuv, jpeg, knitr, png, readr, rmarkdown, testthat\n(>= 0.8.0), xml2",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.3",
+        "NeedsCompilation": "no",
+        "Packaged": "2023-08-15 02:56:56 UTC; hadleywickham",
+        "Author": "Hadley Wickham [aut, cre],\n  Posit, PBC [cph, fnd]",
+        "Maintainer": "Hadley Wickham <hadley@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2023-08-15 09:00:02 UTC",
+        "Built": "R 4.5.0; ; 2025-04-21 01:45:49 UTC; windows"
+      }
+    },
     "isoband": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1472,6 +1620,35 @@
         "Archs": "x64"
       }
     },
+    "openssl": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "openssl",
+        "Type": "Package",
+        "Title": "Toolkit for Encryption, Signatures and Certificates Based on\nOpenSSL",
+        "Version": "2.3.2",
+        "Authors@R": "c(person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroenooms@gmail.com\",\n    comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Oliver\", \"Keyes\", role = \"ctb\"))",
+        "Description": "Bindings to OpenSSL libssl and libcrypto, plus custom SSH key parsers.\n    Supports RSA, DSA and EC curves P-256, P-384, P-521, and curve25519. Cryptographic\n    signatures can either be created and verified manually or via x509 certificates. \n    AES can be used in cbc, ctr or gcm mode for symmetric encryption; RSA for asymmetric\n    (public key) encryption or EC for Diffie Hellman. High-level envelope functions \n    combine RSA and AES for encrypting arbitrary sized data. Other utilities include key\n    generators, hash functions (md5, sha1, sha256, etc), base64 encoder, a secure random\n    number generator, and 'bignum' math methods for manually performing crypto \n    calculations on large multibyte integers.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://jeroen.r-universe.dev/openssl",
+        "BugReports": "https://github.com/jeroen/openssl/issues",
+        "SystemRequirements": "OpenSSL >= 1.0.2",
+        "VignetteBuilder": "knitr",
+        "Imports": "askpass",
+        "Suggests": "curl, testthat (>= 2.1.0), digest, knitr, rmarkdown,\njsonlite, jose, sodium",
+        "RoxygenNote": "7.3.2",
+        "Encoding": "UTF-8",
+        "NeedsCompilation": "yes",
+        "Packaged": "2025-02-03 10:27:29 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Oliver Keyes [ctb]",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-02-03 14:20:02 UTC",
+        "Built": "R 4.5.0; x86_64-w64-mingw32; 2025-04-21 01:27:12 UTC; windows",
+        "Archs": "x64"
+      }
+    },
     "pillar": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1929,6 +2106,33 @@
         "Archs": "x64"
       }
     },
+    "sys": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "sys",
+        "Type": "Package",
+        "Title": "Powerful and Reliable Tools for Running System Commands in R",
+        "Version": "3.4.3",
+        "Authors@R": "c(person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), \n      email = \"jeroenooms@gmail.com\", comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = \"ctb\"))",
+        "Description": "Drop-in replacements for the base system2() function with fine control\n    and consistent behavior across platforms. Supports clean interruption, timeout, \n    background tasks, and streaming STDIN / STDOUT / STDERR over binary or text \n    connections. Arguments on Windows automatically get encoded and quoted to work \n    on different locales.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://jeroen.r-universe.dev/sys",
+        "BugReports": "https://github.com/jeroen/sys/issues",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.1.1",
+        "Suggests": "unix (>= 1.4), spelling, testthat",
+        "Language": "en-US",
+        "NeedsCompilation": "yes",
+        "Packaged": "2024-10-03 14:13:17 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Gábor Csárdi [ctb]",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-10-04 09:40:02 UTC",
+        "Built": "R 4.5.0; x86_64-w64-mingw32; 2025-04-21 00:29:55 UTC; windows",
+        "Archs": "x64"
+      }
+    },
     "terra": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -2256,6 +2460,38 @@
         "Archs": "x64"
       }
     },
+    "xml2": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "xml2",
+        "Title": "Parse XML",
+        "Version": "1.3.8",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", role = \"aut\"),\n    person(\"Jim\", \"Hester\", role = \"aut\"),\n    person(\"Jeroen\", \"Ooms\", email = \"jeroenooms@gmail.com\", role = c(\"aut\", \"cre\")),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")),\n    person(\"R Foundation\", role = \"ctb\",\n           comment = \"Copy of R-project homepage cached as example\")\n  )",
+        "Description": "Bindings to 'libxml2' for working with XML data using a simple, \n    consistent interface based on 'XPath' expressions. Also supports XML schema\n    validation; for 'XSLT' transformations see the 'xslt' package.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://xml2.r-lib.org, https://r-lib.r-universe.dev/xml2",
+        "BugReports": "https://github.com/r-lib/xml2/issues",
+        "Depends": "R (>= 3.6.0)",
+        "Imports": "cli, methods, rlang (>= 1.1.0)",
+        "Suggests": "covr, curl, httr, knitr, magrittr, mockery, rmarkdown,\ntestthat (>= 3.2.0), xslt",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.3",
+        "SystemRequirements": "libxml2: libxml2-dev (deb), libxml2-devel (rpm)",
+        "Collate": "'S4.R' 'as_list.R' 'xml_parse.R' 'as_xml_document.R'\n'classes.R' 'format.R' 'import-standalone-obj-type.R'\n'import-standalone-purrr.R' 'import-standalone-types-check.R'\n'init.R' 'nodeset_apply.R' 'paths.R' 'utils.R' 'xml2-package.R'\n'xml_attr.R' 'xml_children.R' 'xml_document.R' 'xml_find.R'\n'xml_missing.R' 'xml_modify.R' 'xml_name.R' 'xml_namespaces.R'\n'xml_node.R' 'xml_nodeset.R' 'xml_path.R' 'xml_schema.R'\n'xml_serialize.R' 'xml_structure.R' 'xml_text.R' 'xml_type.R'\n'xml_url.R' 'xml_write.R' 'zzz.R'",
+        "Config/testthat/edition": "3",
+        "NeedsCompilation": "yes",
+        "Packaged": "2025-03-14 14:37:00 UTC; jeroen",
+        "Author": "Hadley Wickham [aut],\n  Jim Hester [aut],\n  Jeroen Ooms [aut, cre],\n  Posit Software, PBC [cph, fnd],\n  R Foundation [ctb] (Copy of R-project homepage cached as example)",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-03-14 19:30:02 UTC",
+        "Built": "R 4.5.0; x86_64-w64-mingw32; 2025-04-21 01:12:51 UTC; windows",
+        "Archs": "x64"
+      }
+    },
     "yaml": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -2283,13 +2519,13 @@
   },
   "files": {
     "argia_report.html": {
-      "checksum": "e0ed4f3ecf5d4fdfae2cd4952193cc28"
+      "checksum": "c46bf250053c55ef9c953ed33d24fe47"
     },
     "argia_report.qmd": {
-      "checksum": "89bdf50e9c7b7e2d9ff8a76c20db5dd8"
+      "checksum": "afa09ccafca0aaa6b10dd02d786ac21c"
     },
     "argia_report_files/figure-html/unnamed-chunk-1-1.png": {
-      "checksum": "f4623869c89ff5e6fac0f4f9b0b71f7e"
+      "checksum": "3f0990ffa68536719f010c80633e71bb"
     },
     "argia_report_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css": {
       "checksum": "bb462d781dde1847d9e3ccf7736099dd"
