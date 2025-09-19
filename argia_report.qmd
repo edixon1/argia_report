@@ -17,6 +17,7 @@ library(glue)
 library(leaflet)
 library(here)
 library(ggplot2)
+library(aws.s3)
 ```
 
 ```{r}
@@ -25,7 +26,7 @@ library(ggplot2)
 #| message: false
 #| results: hide
 
-argia <- sf::st_read(here::here("Data/Tidy/argia/", "argia_tidy.gpkg"))
+argia <- s3read_using(FUN = sf::st_read, bucket = "kdv-test-bucket", object = "argia_tidy.gpkg") 
 ```
 
 ```{r}
@@ -34,7 +35,10 @@ argia <- sf::st_read(here::here("Data/Tidy/argia/", "argia_tidy.gpkg"))
 #| message: false
 #| results: hide
 
-huc12 <- sf::st_read(here::here("Data/Tidy/huc12/", "huc12.gpkg"))
+
+huc12 <- s3read_using(FUN = sf::st_read, bucket = "kdv-test-bucket", object = "huc12.gpkg") 
+
+
 ```
 
 # Data Review
